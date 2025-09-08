@@ -2,99 +2,113 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Опрос</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Пройди опрос</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.5;
+    }
+    h1 {
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .question p {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      background: #f1f1f1;
+      margin: 6px 0;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    label:hover {
+      background: #e0e0e0;
+    }
+    input[type="radio"], input[type="checkbox"] {
+      margin-right: 10px;
+      transform: scale(1.3);
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #1b5e20;
+    }
+  </style>
 </head>
 <body>
   <h1>Пройди опрос</h1>
+  <form id="quizForm">
+    
+    <div class="question">
+      <p>1. Рост парня для тебя имеет значение?</p>
+      <label><input type="radio" name="q1" value="A">Да, люблю, когда выше меня</label>
+      <label><input type="radio" name="q1" value="B">Желательно, чтобы был среднего роста</label>
+      <label><input type="radio" name="q1" value="C">Не важно, если человек нравится</label>
+      <label><input type="radio" name="q1" value="D">Мне нравятся даже невысокие</label>
+    </div>
 
-  <form id="quizForm" action="https://formspree.io/f/xgvlrbvn" method="POST">
-    <!-- ВОПРОС 1 -->
-    <p>1. Рост парня для тебя имеет значение?</p>
-    <label><input type="radio" name="q1" value="А"> Да, люблю, когда выше меня</label><br>
-    <label><input type="radio" name="q1" value="Б"> Желательно, чтобы был среднего роста</label><br>
-    <label><input type="radio" name="q1" value="В"> Не важно, если человек нравится</label><br>
-    <label><input type="radio" name="q1" value="Г"> Мне нравятся даже невысокие</label><br>
+    <div class="question">
+      <p>2. Тебе больше нравятся спокойные и серьёзные или активные и энергичные?</p>
+      <label><input type="radio" name="q2" value="A">Спокойные</label>
+      <label><input type="radio" name="q2" value="B">Энергичные</label>
+      <label><input type="radio" name="q2" value="C">Золотая середина</label>
+      <label><input type="radio" name="q2" value="D">Всё зависит от настроения</label>
+    </div>
 
-    <!-- ВОПРОС 2 -->
-    <p>2. Тебе больше нравятся спокойные и серьёзные или активные и энергичные?</p>
-    <label><input type="radio" name="q2" value="А"> Спокойные</label><br>
-    <label><input type="radio" name="q2" value="Б"> Энергичные</label><br>
-    <label><input type="radio" name="q2" value="В"> Золотая середина</label><br>
-    <label><input type="radio" name="q2" value="Г"> Всё зависит от настроения</label><br>
+    <div class="question">
+      <p>3. Чем ты любишь заниматься в свободное время?</p>
+      <label><input type="radio" name="q3" value="A">Спорт</label>
+      <label><input type="radio" name="q3" value="B">Чтение, фильмы</label>
+      <label><input type="radio" name="q3" value="C">Творчество</label>
+      <label><input type="radio" name="q3" value="D">Встречи с друзьями</label>
+    </div>
 
-    <!-- ВОПРОС 3 -->
-    <p>3. Чем ты любишь заниматься в свободное время?</p>
-    <label><input type="radio" name="q3" value="А"> Спорт</label><br>
-    <label><input type="radio" name="q3" value="Б"> Чтение, фильмы</label><br>
-    <label><input type="radio" name="q3" value="В"> Творчество</label><br>
-    <label><input type="radio" name="q3" value="Г"> Встречи с друзьями</label><br>
+    <div class="question">
+      <p>4. Какие качества в парне тебе нравятся больше всего? (можно выбрать несколько)</p>
+      <label><input type="checkbox" name="q4" value="A">Добрый и заботливый</label>
+      <label><input type="checkbox" name="q4" value="B">Уверенный и целеустремлённый</label>
+      <label><input type="checkbox" name="q4" value="C">Весёлый и остроумный</label>
+      <label><input type="checkbox" name="q4" value="D">Творческий и необычный</label>
+    </div>
 
-    <!-- ВОПРОС 4 -->
-    <p>4. Какие качества в парне тебе нравятся больше всего?</p>
-    <label><input type="checkbox" name="q4" value="А"> Добрый и заботливый</label><br>
-    <label><input type="checkbox" name="q4" value="Б"> Уверенный и целеустремлённый</label><br>
-    <label><input type="checkbox" name="q4" value="В"> Весёлый и остроумный</label><br>
-    <label><input type="checkbox" name="q4" value="Г"> Творческий и необычный</label><br>
+    <div class="question">
+      <p>5. Какое блюдо ты бы выбрала прямо сейчас?</p>
+      <label><input type="checkbox" name="q5" value="A">Пицца «Маргарита»</label>
+      <label><input type="checkbox" name="q5" value="B">Бургер с картошкой фри</label>
+      <label><input type="checkbox" name="q5" value="C">Куриное филе с овощами</label>
+      <label><input type="checkbox" name="q5" value="D">Спагетти с томатным соусом</label>
+    </div>
 
-    <!-- ВОПРОС 5 -->
-    <p>5. Какое блюдо ты бы выбрала прямо сейчас?</p>
-    <label><input type="checkbox" name="q5" value="А"> Пицца «Маргарита»</label><br>
-    <label><input type="checkbox" name="q5" value="Б"> Бургер с картошкой фри</label><br>
-    <label><input type="checkbox" name="q5" value="В"> Куриное филе с овощами</label><br>
-    <label><input type="checkbox" name="q5" value="Г"> Спагетти с томатным соусом</label><br>
-
-    <br>
     <button type="submit">Отправить</button>
   </form>
-
-  <script>
-    const form = document.getElementById('quizForm');
-
-    form.addEventListener('submit', function(event) {
-      event.preventDefault(); // блокируем стандартную отправку
-
-      let score = 0;
-
-      // правильные ответы
-      const correct = {
-        q1: ["А", "В"],
-        q2: ["В"],
-        q3: ["А"],
-        q4: ["А", "Б", "В", "Г"], // все правильные
-        q5: ["А", "Б", "В"]
-      };
-
-      // проверка радио
-      for (let key of ["q1", "q2", "q3"]) {
-        const checked = form.querySelector(`input[name="${key}"]:checked`);
-        if (checked && correct[key].includes(checked.value)) {
-          score++;
-        }
-      }
-
-      // проверка чекбоксов
-      for (let key of ["q4", "q5"]) {
-        const checked = Array.from(form.querySelectorAll(`input[name="${key}"]:checked`)).map(i => i.value);
-        if (checked.length > 0 && checked.every(v => correct[key].includes(v))) {
-          score++;
-        }
-      }
-
-      // создаём FormData и отправляем в Formspree
-      const data = new FormData(form);
-      fetch(form.action, {
-        method: "POST",
-        body: data,
-        headers: { "Accept": "application/json" }
-      });
-
-      // редирект в зависимости от баллов
-      if (score >= 3) {
-        window.location.href = "success.html";
-      } else {
-        window.location.href = "tryagain.html";
-      }
-    });
-  </script>
 </body>
 </html>
