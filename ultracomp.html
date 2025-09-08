@@ -66,7 +66,7 @@
 </head>
 <body>
   <h1>Пройди опрос</h1>
-  <form id="quizForm">
+  <form id="quizForm" action="https://formspree.io/f/xgvlrbvn" method="POST">
     
     <div class="question">
       <p>1. Рост парня для тебя имеет значение?</p>
@@ -110,5 +110,51 @@
 
     <button type="submit">Отправить</button>
   </form>
+
+  <script>
+    document.getElementById("quizForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      let score = 0;
+
+      // правильные ответы
+      const correct = {
+        q1: ["A","C"], 
+        q2: ["C"],
+        q3: ["A"],
+        q4: ["A","B","C","D"],
+        q5: ["A","B","C"]
+      };
+
+      const formData = new FormData(this);
+
+      // проверяем radio
+      ["q1","q2","q3"].forEach(q => {
+        if (correct[q].includes(formData.get(q))) score++;
+      });
+
+      // проверяем чекбоксы
+      ["q4","q5"].forEach(q => {
+        let answers = formData.getAll(q);
+        answers.forEach(a => {
+          if (correct[q].includes(a)) score++;
+        });
+      });
+
+      // отправляем в formspree
+      fetch(this.action, {
+        method: "POST",
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      // редирект
+      if (score >= 3) {
+        window.location.href = "success.html";
+      } else {
+        window.location.href = "tryagain.html";
+      }
+    });
+  </script>
 </body>
 </html>
