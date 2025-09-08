@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Опрос</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; max-width: 700px; }
+    h3 { margin-top: 20px; }
+    label { display: block; margin-bottom: 6px; }
+    button { margin-top: 20px; padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <form> action="https://formspree.io/f/abcdwxyz" method="POST">
+  <label>Рост парня для тебя имеет значение?</label><br>
+  <input type="radio" name="q1" value="А"> Да, люблю, когда выше меня<br>
+  <input type="radio" name="q1" value="Б"> Желательно, чтобы был среднего роста<br>
+  <input type="radio" name="q1" value="В"> Не важно, если человек нравится<br>
+  <input type="radio" name="q1" value="Г"> Мне нравятся даже невысокие<br>
+  <br>
+
+  <label>Тебе больше нравятся спокойные и серьёзные или активные и энергичные?</label><br>
+  <input type="radio" name="q2" value="А"> Спокойные, уравновешенные<br>
+  <input type="radio" name="q2" value="Б"> Энергичные, весёлые<br>
+  <input type="radio" name="q2" value="В"> Золотая середина<br>
+  <input type="radio" name="q2" value="Г"> Всё зависит от настроения<br>
+  <br>
+
+  <label>Чем ты любишь заниматься в свободное время?</label><br>
+  <input type="radio" name="q3" value="А"> Спорт, активный отдых<br>
+  <input type="radio" name="q3" value="Б"> Чтение, фильмы<br>
+  <input type="radio" name="q3" value="В"> Творчество<br>
+  <input type="radio" name="q3" value="Г"> Встречи с друзьями<br>
+  <br>
+
+  <label>Какие качества в парне тебе нравятся больше всего?</label><br>
+  <input type="checkbox" name="q4" value="А"> Добрый и заботливый<br>
+  <input type="checkbox" name="q4" value="Б"> Уверенный и целеустремлённый<br>
+  <input type="checkbox" name="q4" value="В"> Весёлый и остроумный<br>
+  <input type="checkbox" name="q4" value="Г"> Творческий и необычный<br>
+  <br>
+
+  <label>Какое блюдо ты бы выбрала прямо сейчас?</label><br>
+  <input type="checkbox" name="q5" value="А"> Пицца «Маргарита»<br>
+  <input type="checkbox" name="q5" value="Б"> Бургер с картошкой фри<br>
+  <input type="checkbox" name="q5" value="В"> Куриное филе с овощами<br>
+  <input type="checkbox" name="q5" value="Г"> Спагетти с томатным соусом<br>
+  <br>
+
+  <button type="submit">Отправить</button>
+</form>
+
+  <script>
+    function checkAnswers() {
+      let score = 0;
+
+      // правильные ответы
+      let correct = {
+        q1: ["a", "v"],
+        q2: ["v"],
+        q3: ["a"],
+        q4: ["a","b","v","g"],
+        q5: ["a","b","v"]
+      };
+
+      // проверяем каждый вопрос
+      for (let q in correct) {
+        let answers = [...document.querySelectorAll(`[name=${q}]:checked`)].map(el => el.value);
+        if (answers.length) {
+          let right = correct[q];
+          if (answers.every(val => right.includes(val)) && answers.length <= right.length) {
+            score++;
+          }
+        }
+      }
+
+      if (score >= 3) {
+        window.location.href = "https://sites.google.com/view/supersecretnoe/untitled-page"; // страница для прошедших
+      } else {
+        window.location.href = "https://sites.google.com/view/supersecretnoe/untitled-page_1"; // страница для не прошедших
+      }
+    }
+  </script>
+</body>
+</html>
