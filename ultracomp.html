@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Опрос</title>
+</head>
+<body>
+  <h1>Пройди опрос</h1>
+
+  <form id="quizForm" action="https://formspree.io/f/xgvlrbvn" method="POST">
+    <!-- ВОПРОС 1 -->
+    <p>1. Рост парня для тебя имеет значение?</p>
+    <label><input type="radio" name="q1" value="А"> Да, люблю, когда выше меня</label><br>
+    <label><input type="radio" name="q1" value="Б"> Желательно, чтобы был среднего роста</label><br>
+    <label><input type="radio" name="q1" value="В"> Не важно, если человек нравится</label><br>
+    <label><input type="radio" name="q1" value="Г"> Мне нравятся даже невысокие</label><br>
+
+    <!-- ВОПРОС 2 -->
+    <p>2. Тебе больше нравятся спокойные и серьёзные или активные и энергичные?</p>
+    <label><input type="radio" name="q2" value="А"> Спокойные</label><br>
+    <label><input type="radio" name="q2" value="Б"> Энергичные</label><br>
+    <label><input type="radio" name="q2" value="В"> Золотая середина</label><br>
+    <label><input type="radio" name="q2" value="Г"> Всё зависит от настроения</label><br>
+
+    <!-- ВОПРОС 3 -->
+    <p>3. Чем ты любишь заниматься в свободное время?</p>
+    <label><input type="radio" name="q3" value="А"> Спорт</label><br>
+    <label><input type="radio" name="q3" value="Б"> Чтение, фильмы</label><br>
+    <label><input type="radio" name="q3" value="В"> Творчество</label><br>
+    <label><input type="radio" name="q3" value="Г"> Встречи с друзьями</label><br>
+
+    <!-- ВОПРОС 4 -->
+    <p>4. Какие качества в парне тебе нравятся больше всего?</p>
+    <label><input type="checkbox" name="q4" value="А"> Добрый и заботливый</label><br>
+    <label><input type="checkbox" name="q4" value="Б"> Уверенный и целеустремлённый</label><br>
+    <label><input type="checkbox" name="q4" value="В"> Весёлый и остроумный</label><br>
+    <label><input type="checkbox" name="q4" value="Г"> Творческий и необычный</label><br>
+
+    <!-- ВОПРОС 5 -->
+    <p>5. Какое блюдо ты бы выбрала прямо сейчас?</p>
+    <label><input type="checkbox" name="q5" value="А"> Пицца «Маргарита»</label><br>
+    <label><input type="checkbox" name="q5" value="Б"> Бургер с картошкой фри</label><br>
+    <label><input type="checkbox" name="q5" value="В"> Куриное филе с овощами</label><br>
+    <label><input type="checkbox" name="q5" value="Г"> Спагетти с томатным соусом</label><br>
+
+    <br>
+    <button type="submit">Отправить</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('quizForm');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // блокируем стандартную отправку
+
+      let score = 0;
+
+      // правильные ответы
+      const correct = {
+        q1: ["А", "В"],
+        q2: ["В"],
+        q3: ["А"],
+        q4: ["А", "Б", "В", "Г"], // все правильные
+        q5: ["А", "Б", "В"]
+      };
+
+      // проверка радио
+      for (let key of ["q1", "q2", "q3"]) {
+        const checked = form.querySelector(`input[name="${key}"]:checked`);
+        if (checked && correct[key].includes(checked.value)) {
+          score++;
+        }
+      }
+
+      // проверка чекбоксов
+      for (let key of ["q4", "q5"]) {
+        const checked = Array.from(form.querySelectorAll(`input[name="${key}"]:checked`)).map(i => i.value);
+        if (checked.length > 0 && checked.every(v => correct[key].includes(v))) {
+          score++;
+        }
+      }
+
+      // создаём FormData и отправляем в Formspree
+      const data = new FormData(form);
+      fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { "Accept": "application/json" }
+      });
+
+      // редирект в зависимости от баллов
+      if (score >= 3) {
+        window.location.href = "success.html";
+      } else {
+        window.location.href = "tryagain.html";
+      }
+    });
+  </script>
+</body>
+</html>
