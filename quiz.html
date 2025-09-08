@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Опрос</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; max-width: 700px; }
+    h3 { margin-top: 20px; }
+    label { display: block; margin-bottom: 6px; }
+    button { margin-top: 20px; padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <form id="quizForm">
+    <h3>1. Рост парня для тебя имеет значение?</h3>
+    <label><input type="radio" name="q1" value="a"> Да, люблю, когда выше меня</label>
+    <label><input type="radio" name="q1" value="b"> Желательно, чтобы был среднего роста</label>
+    <label><input type="radio" name="q1" value="v"> Не важно, если человек нравится</label>
+    <label><input type="radio" name="q1" value="g"> Мне нравятся даже невысокие</label>
+
+    <h3>2. Тебе больше нравятся спокойные и серьёзные или активные и энергичные?</h3>
+    <label><input type="radio" name="q2" value="a"> Спокойные</label>
+    <label><input type="radio" name="q2" value="b"> Энергичные</label>
+    <label><input type="radio" name="q2" value="v"> Золотая середина</label>
+    <label><input type="radio" name="q2" value="g"> Всё зависит от настроения</label>
+
+    <h3>3. Чем ты любишь заниматься в свободное время?</h3>
+    <label><input type="radio" name="q3" value="a"> Спорт, активный отдых</label>
+    <label><input type="radio" name="q3" value="b"> Чтение, фильмы, спокойные занятия</label>
+    <label><input type="radio" name="q3" value="v"> Творчество — рисование, музыка, рукоделие</label>
+    <label><input type="radio" name="q3" value="g"> Встречи с друзьями, тусовки, путешествия</label>
+
+    <h3>4. Какие качества в парне тебе нравятся больше всего?</h3>
+    <label><input type="checkbox" name="q4" value="a"> Добрый и заботливый</label>
+    <label><input type="checkbox" name="q4" value="b"> Уверенный и целеустремлённый</label>
+    <label><input type="checkbox" name="q4" value="v"> Весёлый и остроумный</label>
+    <label><input type="checkbox" name="q4" value="g"> Творческий и необычный</label>
+
+    <h3>5. Какое блюдо ты бы выбрала прямо сейчас?</h3>
+    <label><input type="radio" name="q5" value="a"> Пицца «Маргарита»</label>
+    <label><input type="radio" name="q5" value="b"> Бургер с картошкой фри</label>
+    <label><input type="radio" name="q5" value="v"> Куриное филе с овощами</label>
+    <label><input type="radio" name="q5" value="g"> Спагетти с томатным соусом</label>
+
+    <button type="button" onclick="checkAnswers()">Отправить</button>
+  </form>
+
+  <script>
+    function checkAnswers() {
+      let score = 0;
+
+      // правильные ответы
+      let correct = {
+        q1: ["a", "v"],
+        q2: ["v"],
+        q3: ["a"],
+        q4: ["a","b","v","g"],
+        q5: ["a","b","v"]
+      };
+
+      // проверяем каждый вопрос
+      for (let q in correct) {
+        let answers = [...document.querySelectorAll(`[name=${q}]:checked`)].map(el => el.value);
+        if (answers.length) {
+          let right = correct[q];
+          if (answers.every(val => right.includes(val)) && answers.length <= right.length) {
+            score++;
+          }
+        }
+      }
+
+      if (score >= 3) {
+        window.location.href = "https://sites.google.com/view/supersecretnoe/untitled-page"; // страница для прошедших
+      } else {
+        window.location.href = "https://sites.google.com/view/supersecretnoe/untitled-page_1"; // страница для не прошедших
+      }
+    }
+  </script>
+</body>
+</html>
